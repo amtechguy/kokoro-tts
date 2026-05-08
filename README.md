@@ -48,7 +48,7 @@ sudo dnf install git curl wget make gcc zlib-devel bzip2-devel readline-devel \
   openssl-devel sqlite-devel libffi-devel
 ```
 
-**Arch Linux / Manjaro**
+**Arch Linux / Manjaro / EndeavourOS**
 ```bash
 sudo pacman -S git curl wget base-devel openssl zlib readline sqlite libffi
 ```
