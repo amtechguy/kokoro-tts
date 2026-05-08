@@ -1,0 +1,3 @@
+kokoro_onnx
+sounddevice
+soundfile

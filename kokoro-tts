@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Kokoro TTS launcher — auto-activates the virtual environment
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PYENV_ROOT="${PYENV_ROOT:-$HOME/.pyenv}"
+PYTHON="$PYENV_ROOT/versions/kokoro-env/bin/python3"
+
+if [ ! -f "$PYTHON" ]; then
+    echo "ERROR: kokoro-env not found at $PYTHON"
+    echo "Run: pyenv virtualenv 3.11.9 kokoro-env"
+    exit 1
+fi
+
+if [ ! -f "$SCRIPT_DIR/kokoro-v1.0.onnx" ]; then
+    echo "ERROR: kokoro-v1.0.onnx not found in $SCRIPT_DIR"
+    exit 1
+fi
+
+if [ ! -f "$SCRIPT_DIR/voices-v1.0.bin" ]; then
+    echo "ERROR: voices-v1.0.bin not found in $SCRIPT_DIR"
+    exit 1
+fi
+
+exec "$PYTHON" "$SCRIPT_DIR/kokoro_tui.py"
