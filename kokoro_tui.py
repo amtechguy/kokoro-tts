@@ -134,7 +134,7 @@ def draw_help(w):
     w.erase()
     bordered(w)
     _, width = w.getmaxyx()
-    items = [("TAB","Switch"),("↑↓","Voice"),("ENTER","Play"),("S","Save"),("O","Open"),("C","Clear"),("Q","Quit")]
+    items = [("TAB","Switch"),("↑↓","Voice"),("ENTER","Play"),("S","Save*"),("O","Open*"),("C","Clear*"),("Q","Quit"),("*","Voice panel only")]
     x = 2
     for k, d in items:
         seg = f"[{k}] {d}  "
@@ -229,7 +229,7 @@ def main(scr):
                 except Exception as e:
                     smsg = f"Error: {e}"; serr = True
 
-        elif k in (ord('s'), ord('S')):
+        elif k in (ord('s'), ord('S')) and panel == 0:
             if samp is None:
                 smsg = "Nothing to save — generate audio first."; serr = True
             else:
@@ -243,19 +243,19 @@ def main(scr):
                 else:
                     smsg = "Save cancelled."; serr = False
 
-        elif k in (ord('o'), ord('O')):
+        elif k in (ord('o'), ord('O')) and panel == 0:
             fp = get_input(scr, "Open .txt file path: ", H, W)
             if fp:
                 try:
                     with open(os.path.expanduser(fp), "r", encoding="utf-8") as f:
                         content = f.read()
-                    lines = content.splitlines() or [""]
+                    lines = content.splitlines() or [""]                    
                     cr = cc = 0; panel = 1
                     smsg = f"Loaded: {fp}"; serr = False
                 except Exception as e:
                     smsg = f"Cannot open: {e}"; serr = True
 
-        elif k in (ord('c'), ord('C')):
+        elif k in (ord('c'), ord('C')) and panel == 0:
             lines = [""]; cr = cc = 0
             smsg = "Script cleared."; serr = False
 
