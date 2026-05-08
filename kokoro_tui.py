@@ -134,7 +134,7 @@ def draw_help(w):
     w.erase()
     bordered(w)
     _, width = w.getmaxyx()
-    items = [("TAB","Switch"),("↑↓","Voice"),("ENTER","Play"),("S","Save*"),("O","Open*"),("C","Clear*"),("Q","Quit"),("*","Voice panel only")]
+    items = [("TAB","Switch"),("ESC","Quit"),("↑↓","Voice"),("ENTER","Play"),("S","Save†"),("O","Open†"),("C","Clear†"),("Q","Quit†"),("†","Voice panel")]
     x = 2
     for k, d in items:
         seg = f"[{k}] {d}  "
@@ -207,7 +207,10 @@ def main(scr):
         k = scr.getch()
         if k == -1: continue
 
-        if k in (ord('q'), ord('Q')):
+        if k == 27:   # ESC — quit from anywhere
+            sd.stop(); break
+
+        elif k in (ord('q'), ord('Q')) and panel == 0:
             sd.stop(); break
 
         elif k == ord('\t'):
