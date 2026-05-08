@@ -33,13 +33,33 @@ Before you begin, you need a few things installed. Open a terminal first:
 
 ### 1. Install system dependencies
 
+Pick the command for your Linux distribution:
+
+**Ubuntu / Debian / Linux Mint / Pop!_OS**
 ```bash
 sudo apt update
 sudo apt install git curl wget make build-essential libssl-dev zlib1g-dev \
   libbz2-dev libreadline-dev libsqlite3-dev libffi-dev
 ```
 
-> If you're not on Ubuntu/Debian, replace `apt` with your distro's package manager (e.g. `dnf` on Fedora, `pacman` on Arch).
+**Fedora / RHEL / CentOS**
+```bash
+sudo dnf install git curl wget make gcc zlib-devel bzip2-devel readline-devel \
+  openssl-devel sqlite-devel libffi-devel
+```
+
+**Arch Linux / Manjaro**
+```bash
+sudo pacman -S git curl wget base-devel openssl zlib readline sqlite libffi
+```
+
+**openSUSE**
+```bash
+sudo zypper install git curl wget make gcc zlib-devel libbz2-devel \
+  readline-devel libopenssl-devel sqlite3-devel libffi-devel
+```
+
+> Not sure which distro you have? Run `cat /etc/os-release` in your terminal and look at the `NAME` field.
 
 ### 2. Install pyenv
 
